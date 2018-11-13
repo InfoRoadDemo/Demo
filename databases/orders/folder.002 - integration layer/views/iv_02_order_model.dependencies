@@ -4,9 +4,11 @@
 /databases/orders/folder.001 - connectivity layer/folder.01 - data sources/01 - data sources.vql
 /databases/orders/folder.001 - connectivity layer/folder.01 - data sources/datasources/jdbc/ds_sqlexpress.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_orderitem.vql
-/databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_order.vql
-/databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_customer.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_product.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_supplier.vql
+/databases/orders/folder.001 - connectivity layer/folder.01 - data sources/datasources/json/ds_ws_order.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_ws_order.vql
+/databases/orders/folder.002 - integration layer/views/iv_01_ws_order_flattened.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_customer.vql
 /databases/orders/folder.002 - integration layer/views/iv_01_order_model.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/views/bv_sqls_randomdata_big.vql

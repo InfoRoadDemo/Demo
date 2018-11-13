@@ -25,7 +25,10 @@ CREATE OR REPLACE DATASOURCE JDBC ds_sqlexpress
     MAXSLEEPINGPS = 4
     INITIALCAPACITYPS = 8
     DATA_LOAD_CONFIGURATION (
+        USE_FOR_QUERY_OPTIMIZATION = DATA_MOVEMENT
         BATCHINSERTSIZE = 1000
+        TARGET_CATALOG = 'tempdb'
+        TARGET_SCHEMA = 'dbo'
     )
     SOURCECONFIGURATION (
         delegateprojectsubquery = false,

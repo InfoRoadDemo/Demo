@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_01_ws_order_flattened FOLDER = '/002 - integration layer' AS SELECT id, orderdate, ordernumber, customerid, totalamount FROM FLATTEN bv_ws_order AS v ( v.elements);
+
+ALTER VIEW iv_01_ws_order_flattened
+ LAYOUT (bv_ws_order = [20, 20, 378, 286]);
+
