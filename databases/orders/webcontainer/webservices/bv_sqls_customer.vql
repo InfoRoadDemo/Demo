@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE bv_sqls_customer;
+
+DEPLOY WEBSERVICE bv_sqls_customer LOGIN = '${databases.orders.webcontainer.webservices.bv_sqls_customer.LOGIN}' PASSWORD = '${databases.orders.webcontainer.webservices.bv_sqls_customer.PASSWORD}' ${databases.orders.webcontainer.webservices.bv_sqls_customer.PASSWORD.ENCRYPTED};
+

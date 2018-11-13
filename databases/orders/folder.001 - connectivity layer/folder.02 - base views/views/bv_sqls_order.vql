@@ -1,0 +1,46 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_sqls_order
+    FOLDER = '/001 - connectivity layer/02 - base views'
+    DATASOURCENAME=ds_sqlexpress
+    CATALOGNAME='${databases.orders.folder.001 - connectivity layer.folder.02 - base views.views.jdbc.bv_sqls_order.CATALOGNAME}' 
+    SCHEMANAME='${databases.orders.folder.001 - connectivity layer.folder.02 - base views.views.jdbc.bv_sqls_order.SCHEMANAME}' 
+    RELATIONNAME='Order' ESCAPE
+    OUTPUTSCHEMA (
+        id = 'Id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL NOT SORTABLE IS_AUTOINCREMENT,
+        orderdate = 'OrderDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE,
+        ordernumber = 'OrderNumber' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        customerid = 'CustomerId' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        totalamount = 'TotalAmount' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='12', sourcetypeid='3', sourcetypename='decimal')  SORTABLE
+    )
+    CONSTRAINT 'PK_ORDER' PRIMARY KEY ( 'Id' )
+    CONSTRAINT 'FK_ORDER_REFERENCE_CUSTOMER' FOREIGN KEY ( 'CustomerId' ) 
+    REFERENCES 'demo_7_v2'.'dbo'.'Customer'( 'Id' )  ON UPDATE RESTRICT  ON DELETE RESTRICT NOT DEFERRABLE 
+    INDEX 'PK_ORDER' CLUSTER UNIQUE PRIMARY ( 'Id' )
+    INDEX 'IndexOrderCustomerId' OTHER ( 'CustomerId' )
+    INDEX 'IndexOrderOrderDate' OTHER ( 'OrderDate' );
+
+CREATE OR REPLACE TABLE bv_sqls_order I18N be_euro (
+        id:int (sourcetypedecimals = '0', sourcetyperadix = '10', autoincrement, sourcetypesize = '10', sourcetypeid = '4'), 
+        orderdate:timestamp (sourcetypedecimals = '3', sourcetypesize = '23', sourcetypeid = '93'), 
+        ordernumber:text (sourcetypesize = '10', sourcetypeid = '-9'), 
+        customerid:int (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '4'), 
+        totalamount:decimal (sourcetypedecimals = '2', sourcetyperadix = '10', sourcetypesize = '12', sourcetypeid = '3')
+    )
+    FOLDER = '/001 - connectivity layer/02 - base views'
+    CONSTRAINT 'PK_ORDER' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sqls_order(
+        I18N be_euro
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD orderdate (any) OPT ANY
+             ADD ordernumber (any) OPT ANY
+             ADD customerid (any) OPT ANY
+             ADD totalamount (any) OPT ANY
+        )
+        OUTPUTLIST (customerid, id, orderdate, ordernumber, totalamount
+        )
+        WRAPPER (jdbc bv_sqls_order)
+    );
+

@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_sqls_customer_bv_sqls_order REFERENTIAL CONSTRAINT 
+FOLDER = '/001 - connectivity layer/02 - base views'
+    ENDPOINT bv_sqls_order bv_sqls_customer PRINCIPAL (0,1)
+    ENDPOINT bv_sqls_customer bv_sqls_order (0,*)
+    ADD MAPPING id=customerid;
+
