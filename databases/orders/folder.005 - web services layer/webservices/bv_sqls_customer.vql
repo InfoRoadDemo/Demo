@@ -1,0 +1,74 @@
+﻿CREATE OR REPLACE REST WEBSERVICE bv_sqls_customer
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = HTML
+    SUPPORTEDREPRESENTATIONS (HTML, XML, JSON)
+    RESOURCES (
+        VIEW bv_sqls_customer FIELDS (
+            id : 'int', 
+            firstname : 'text', 
+            lastname : 'text', 
+            city : 'text', 
+            country : 'text', 
+            phone : 'text'
+        ),
+        VIEW bv_sqls_order FIELDS (
+            id : 'int', 
+            orderdate : 'timestamp', 
+            ordernumber : 'text', 
+            customerid : 'int', 
+            totalamount : 'decimal'
+        ),
+        VIEW bv_sqls_orderitem FIELDS (
+            id : 'int', 
+            orderid : 'int', 
+            productid : 'int', 
+            unitprice : 'decimal', 
+            quantity : 'int'
+        ),
+        VIEW bv_sqls_product FIELDS (
+            id : 'int', 
+            productname : 'text', 
+            supplierid : 'int', 
+            unitprice : 'decimal', 
+            package : 'text', 
+            isdiscontinued : 'boolean'
+        ),
+        VIEW bv_sqls_randomdata FIELDS (
+            rowid : 'int', 
+            someint : 'int', 
+            somebit : 'boolean', 
+            somevarchar : 'text', 
+            somedatetime : 'timestamp', 
+            somenumeric : 'decimal'
+        ),
+        VIEW bv_sqls_randomdata_big FIELDS (
+            rowid : 'int', 
+            someint : 'int', 
+            somebit : 'boolean', 
+            somevarchar : 'text', 
+            somedatetime : 'timestamp', 
+            somenumeric : 'decimal'
+        ),
+        VIEW bv_sqls_supplier FIELDS (
+            id : 'int', 
+            companyname : 'text', 
+            contactname : 'text', 
+            contacttitle : 'text', 
+            city : 'text', 
+            country : 'text', 
+            phone : 'text', 
+            fax : 'text'
+        )
+    )
+    ASSOCIATIONS ( bv_sqls_customer_bv_sqls_order, bv_sqls_order_bv_sqls_orderitem, bv_sqls_product_bv_sqls_orderitem, bv_sqls_supplier_bv_sqls_product )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) 
+    FOLDER = '/005 - web services layer';
+

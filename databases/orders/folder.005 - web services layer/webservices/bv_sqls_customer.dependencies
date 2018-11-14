@@ -1,14 +1,13 @@
-﻿/databases/orders/folder.002 - integration layer/002 - integration layer.vql
+﻿/databases/orders/folder.005 - web services layer/005 - web services layer.vql
 /databases/orders/folder.001 - connectivity layer/001 - connectivity layer.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/02 - base views.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/sqls.vql
 /databases/orders/folder.001 - connectivity layer/folder.01 - data sources/01 - data sources.vql
 /databases/orders/folder.001 - connectivity layer/folder.01 - data sources/datasources/jdbc/ds_sqlexpress.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_customer.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_order.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_orderitem.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_product.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_randomdata.vql
+/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_randomdata_big.vql
 /databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_supplier.vql
-/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.webservice/webservice.vql
-/databases/orders/folder.001 - connectivity layer/folder.01 - data sources/datasources/json/ds_ws_order.vql
-/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.webservice/views/bv_ws_order.vql
-/databases/orders/folder.002 - integration layer/views/iv_01_ws_order_flattened.vql
-/databases/orders/folder.001 - connectivity layer/folder.02 - base views/folder.sqls/views/bv_sqls_customer.vql

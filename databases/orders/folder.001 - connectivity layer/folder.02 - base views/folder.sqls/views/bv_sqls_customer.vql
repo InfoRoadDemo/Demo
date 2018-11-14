@@ -1,0 +1,46 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_sqls_customer
+    FOLDER = '/001 - connectivity layer/02 - base views/sqls'
+    DATASOURCENAME=ds_sqlexpress
+    CATALOGNAME='${databases.orders.folder.001 - connectivity layer.folder.02 - base views.folder.sqls.views.jdbc.bv_sqls_customer.CATALOGNAME}' 
+    SCHEMANAME='${databases.orders.folder.001 - connectivity layer.folder.02 - base views.folder.sqls.views.jdbc.bv_sqls_customer.SCHEMANAME}' 
+    RELATIONNAME='Customer' 
+    OUTPUTSCHEMA (
+        id = 'Id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL NOT SORTABLE IS_AUTOINCREMENT,
+        firstname = 'FirstName' :'java.lang.String' (OPT) (sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE,
+        lastname = 'LastName' :'java.lang.String' (OPT) (sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE,
+        city = 'City' :'java.lang.String' (OPT) (sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        country = 'Country' :'java.lang.String' (OPT) (sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        phone = 'Phone' :'java.lang.String' (OPT) (sourcetypesize='20', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE
+    )
+    CONSTRAINT 'PK_CUSTOMER' PRIMARY KEY ( 'Id' )
+    INDEX 'PK_CUSTOMER' CLUSTER UNIQUE PRIMARY ( 'Id' )
+    INDEX 'IndexCustomerName' OTHER ( 'LastName' , 'FirstName' );
+
+CREATE OR REPLACE TABLE bv_sqls_customer I18N be_euro (
+        id:int (sourcetypedecimals = '0', sourcetyperadix = '10', autoincrement, sourcetypesize = '10', sourcetypeid = '4'), 
+        firstname:text (sourcetypesize = '40', sourcetypeid = '-9'), 
+        lastname:text (sourcetypesize = '40', sourcetypeid = '-9'), 
+        city:text (sourcetypesize = '40', sourcetypeid = '-9'), 
+        country:text (sourcetypesize = '40', sourcetypeid = '-9'), 
+        phone:text (sourcetypesize = '20', sourcetypeid = '-9')
+    )
+    FOLDER = '/001 - connectivity layer/02 - base views/sqls'
+    CONSTRAINT 'PK_CUSTOMER' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sqls_customer(
+        I18N be_euro
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD phone (any) OPT ANY
+        )
+        OUTPUTLIST (city, country, firstname, id, lastname, phone
+        )
+        WRAPPER (jdbc bv_sqls_customer)
+    );
+

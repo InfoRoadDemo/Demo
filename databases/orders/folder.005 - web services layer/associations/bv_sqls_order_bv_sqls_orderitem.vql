@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_sqls_order_bv_sqls_orderitem REFERENTIAL CONSTRAINT 
+FOLDER = '/005 - web services layer'
+    ENDPOINT bv_sqls_orderitem bv_sqls_order PRINCIPAL (0,1)
+    ENDPOINT bv_sqls_order bv_sqls_orderitem (0,*)
+    ADD MAPPING id=orderid;
+

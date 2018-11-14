@@ -1,6 +1,0 @@
-﻿CREATE OR REPLACE ASSOCIATION bv_sqls_supplier_bv_sqls_product REFERENTIAL CONSTRAINT 
-FOLDER = '/001 - connectivity layer/02 - base views'
-    ENDPOINT bv_sqls_product bv_sqls_supplier PRINCIPAL (0,1)
-    ENDPOINT bv_sqls_supplier bv_sqls_product (0,*)
-    ADD MAPPING id=supplierid;
-

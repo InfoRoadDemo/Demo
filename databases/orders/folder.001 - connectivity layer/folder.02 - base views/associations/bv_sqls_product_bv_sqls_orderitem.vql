@@ -1,6 +1,0 @@
-﻿CREATE OR REPLACE ASSOCIATION bv_sqls_product_bv_sqls_orderitem REFERENTIAL CONSTRAINT 
-FOLDER = '/001 - connectivity layer/02 - base views'
-    ENDPOINT bv_sqls_orderitem bv_sqls_product PRINCIPAL (0,1)
-    ENDPOINT bv_sqls_product bv_sqls_orderitem (0,*)
-    ADD MAPPING id=productid;
-

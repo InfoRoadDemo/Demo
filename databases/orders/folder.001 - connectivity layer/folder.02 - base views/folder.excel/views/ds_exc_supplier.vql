@@ -1,0 +1,30 @@
+﻿CREATE OR REPLACE TABLE ds_exc_supplier I18N be_euro (
+        id:int (sourcetypeid = '4'), 
+        companyname:text (sourcetypeid = '12'), 
+        contactname:text (sourcetypeid = '12'), 
+        contacttitle:text (sourcetypeid = '12'), 
+        city:text (sourcetypeid = '12'), 
+        country:text (sourcetypeid = '12'), 
+        phone:text (sourcetypeid = '12'), 
+        fax:text (sourcetypeid = '12')
+    )
+    FOLDER = '/001 - connectivity layer/02 - base views/excel'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_exc_supplier(
+        I18N be_euro
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD companyname (any) OPT ANY
+             ADD contactname (any) OPT ANY
+             ADD contacttitle (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+        )
+        OUTPUTLIST (city, companyname, contactname, contacttitle, country, fax, id, phone
+        )
+        WRAPPER (custom ds_exc_supplier)
+    );
+

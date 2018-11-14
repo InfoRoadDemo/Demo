@@ -1,0 +1,75 @@
+﻿CREATE OR REPLACE WRAPPER JSON bv_ws_order
+    FOLDER = '/001 - connectivity layer/02 - base views/webservice'
+    DATASOURCENAME=ds_ws_order
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        name = 'name' : 'java.lang.String',
+        elements = 'elements' : ARRAY OF (
+            elements = 'elements' : REGISTER OF (
+                id = 'id' : 'java.lang.Integer',
+                orderdate = 'orderdate' : 'java.lang.String',
+                ordernumber = 'ordernumber' : 'java.lang.String',
+                customerid = 'customerid' : 'java.lang.Integer',
+                totalamount = 'totalamount' : 'java.lang.Double',
+                links = 'links' : ARRAY OF (
+                    links = 'links' : REGISTER OF (
+                        rel = 'rel' : 'java.lang.String',
+                        href = 'href' : 'java.lang.String'
+                    )
+                )
+            )
+        ),
+        links = 'links' : ARRAY OF (
+            links = 'links' : REGISTER OF (
+                rel = 'rel' : 'java.lang.String',
+                href = 'href' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_ws_order_elements_elements_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_ws_order_elements_elements_links AS ARRAY OF ds_ws_order_elements_elements_links_links;
+
+CREATE OR REPLACE TYPE ds_ws_order_elements_elements AS REGISTER OF (id:int, orderdate:timestamp, ordernumber:text, customerid:int, totalamount:double, links:ds_ws_order_elements_elements_links);
+
+CREATE OR REPLACE TYPE ds_ws_order_elements AS ARRAY OF ds_ws_order_elements_elements;
+
+CREATE OR REPLACE TYPE ds_ws_order_links_links AS REGISTER OF (rel:text, href:text);
+
+CREATE OR REPLACE TYPE ds_ws_order_links AS ARRAY OF ds_ws_order_links_links;
+
+CREATE OR REPLACE TABLE bv_ws_order I18N be_euro (
+        name:text, 
+        elements:ds_ws_order_elements, 
+        links:ds_ws_order_links
+    )
+    FOLDER = '/001 - connectivity layer/02 - base views/webservice'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_ws_order(
+        I18N be_euro
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD elements.id NOS ZERO ()
+             ADD elements.orderdate NOS ZERO ()
+             ADD elements.ordernumber NOS ZERO ()
+             ADD elements.customerid NOS ZERO ()
+             ADD elements.totalamount NOS ZERO ()
+             ADD elements.links NOS ZERO ()
+             ADD elements.links NOS ZERO ()
+             ADD elements.links.rel NOS ZERO ()
+             ADD elements.links.href NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links NOS ZERO ()
+             ADD links.rel NOS ZERO ()
+             ADD links.href NOS ZERO ()
+        )
+        OUTPUTLIST (elements, links, name
+        )
+        WRAPPER (json bv_ws_order)
+    );
+
