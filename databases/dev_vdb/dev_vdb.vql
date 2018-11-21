@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATABASE dev_vdb 'Central database Aperam';
+
+ALTER DATABASE dev_vdb
+  CHARSET DEFAULT;
+
