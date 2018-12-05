@@ -4,11 +4,11 @@ CREATE OR REPLACE DATASOURCE CUSTOM ds_exc_supplier
     CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
 
 CREATE OR REPLACE WRAPPER CUSTOM ds_exc_supplier
-    FOLDER = '/001 - connectivity layer/02 - base views/excel'
+    FOLDER = '/001 - connectivity layer/01 - data sources'
     DATASOURCENAME=ds_exc_supplier
     PARAMETERS (
       'Type of file' = 'Excel 2007 or later (*.xlsx)',
-      'File location' = ROUTE LOCAL 'LocalConnection' '${databases.orders.folder.001 - connectivity layer.folder.02 - base views.folder.excel.views.custom.ds_exc_supplier.File location.ROUTE.LOCAL.PATH}',
+      'File location' = ROUTE LOCAL 'LocalConnection' '${databases.orders.folder.001 - connectivity layer.folder.01 - data sources.views.custom.ds_exc_supplier.File location.ROUTE.LOCAL.PATH}',
       'Extract data from all sheets' = true,
       'Extract sheet name as a new column' = false,
       'Has headers' = true,
