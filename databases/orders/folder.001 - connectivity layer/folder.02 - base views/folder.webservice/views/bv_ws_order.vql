@@ -47,6 +47,7 @@ CREATE OR REPLACE TABLE bv_ws_order I18N be_euro (
     )
     FOLDER = '/001 - connectivity layer/02 - base views/webservice'
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_ws_order(
         I18N be_euro
@@ -71,5 +72,6 @@ CREATE OR REPLACE TABLE bv_ws_order I18N be_euro (
         OUTPUTLIST (elements, links, name
         )
         WRAPPER (json bv_ws_order)
-    );
+    )
+    DELEGATESTATSQUERY = false;
 

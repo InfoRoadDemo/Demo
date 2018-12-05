@@ -31,6 +31,7 @@ CREATE OR REPLACE TABLE bv_sqls_orderitem I18N be_euro (
     FOLDER = '/001 - connectivity layer/02 - base views/sqls'
     CONSTRAINT 'PK_ORDERITEM' PRIMARY KEY ( 'id' )
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_sqls_orderitem(
         I18N be_euro
@@ -44,5 +45,7 @@ CREATE OR REPLACE TABLE bv_sqls_orderitem I18N be_euro (
         OUTPUTLIST (id, orderid, productid, quantity, unitprice
         )
         WRAPPER (jdbc bv_sqls_orderitem)
-    );
+    )
+    DELEGATESTATSQUERY = false
+    SMART_THEN_ATSOURCE_THROUGH_VDP;
 

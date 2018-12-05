@@ -3,3 +3,6 @@
 ALTER VIEW iv_01_ws_order_flattened
  LAYOUT (bv_ws_order = [20, 20, 378, 286]);
 
+ALTER VIEW iv_01_ws_order_flattened
+     DELEGATESTATSQUERY = false;
+

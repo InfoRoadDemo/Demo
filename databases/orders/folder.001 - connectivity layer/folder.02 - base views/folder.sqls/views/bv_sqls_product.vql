@@ -31,6 +31,7 @@ CREATE OR REPLACE TABLE bv_sqls_product I18N be_euro (
     FOLDER = '/001 - connectivity layer/02 - base views/sqls'
     CONSTRAINT 'PK_PRODUCT' PRIMARY KEY ( 'id' )
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_sqls_product(
         I18N be_euro
@@ -45,5 +46,7 @@ CREATE OR REPLACE TABLE bv_sqls_product I18N be_euro (
         OUTPUTLIST (id, isdiscontinued, package, productname, supplierid, unitprice
         )
         WRAPPER (jdbc bv_sqls_product)
-    );
+    )
+    DELEGATESTATSQUERY = false
+    SMART_THEN_ATSOURCE_THROUGH_VDP;
 

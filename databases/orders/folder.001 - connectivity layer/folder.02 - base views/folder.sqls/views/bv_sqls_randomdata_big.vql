@@ -24,6 +24,7 @@ CREATE OR REPLACE TABLE bv_sqls_randomdata_big I18N be_euro (
     )
     FOLDER = '/001 - connectivity layer/02 - base views/sqls'
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_sqls_randomdata_big(
         I18N be_euro
@@ -38,5 +39,6 @@ CREATE OR REPLACE TABLE bv_sqls_randomdata_big I18N be_euro (
         OUTPUTLIST (rowid, somebit, somedatetime, someint, somenumeric, somevarchar
         )
         WRAPPER (jdbc bv_sqls_randomdata_big)
-    );
+    )
+    SMART_THEN_ATSOURCE_THROUGH_VDP;
 

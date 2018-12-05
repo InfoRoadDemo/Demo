@@ -33,6 +33,7 @@ CREATE OR REPLACE TABLE bv_sqls_supplier I18N be_euro (
     FOLDER = '/001 - connectivity layer/02 - base views/sqls'
     CONSTRAINT 'PK_SUPPLIER' PRIMARY KEY ( 'id' )
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_sqls_supplier(
         I18N be_euro
@@ -49,5 +50,7 @@ CREATE OR REPLACE TABLE bv_sqls_supplier I18N be_euro (
         OUTPUTLIST (city, companyname, contactname, contacttitle, country, fax, id, phone
         )
         WRAPPER (jdbc bv_sqls_supplier)
-    );
+    )
+    DELEGATESTATSQUERY = false
+    SMART_THEN_ATSOURCE_THROUGH_VDP;
 
